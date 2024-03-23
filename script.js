@@ -14,3 +14,22 @@ function fetchDigAPI(){
     })
 }
 
+function searchDigAPI(){
+
+        const value = document.querySelector('#search_input').value
+        fetch('https://digimoncard.io/api-public/search.php?n=' + value)
+            .then((res) => res.json())
+            .then((data) => {
+                const search_list = document.querySelector('#search_list')
+                    
+                data.map((item) => {
+                    const li = document.createElement('li')
+
+                    li.setAttribute('id', item.id)
+                    li.innerHTML = `name: ${item.name}<br />card number: ${item.cardnumber} <br /> digi_type: ${item.digi_type} <br /> image: ${item.image_url}<br /> <br />`
+                    search_list.appendChild(li)
+                })
+                document.querySelector('input').value = ''
+            })
+            .catch((err) => console.log(err));
+}
