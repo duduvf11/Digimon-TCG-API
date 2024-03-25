@@ -3,6 +3,7 @@ function fetchDigAPI(){
     .then(response => response.json())
     .then(data => {
         const list = document.querySelector('#fill_list')
+        list.innerHTML = ''
         
         data.map((item) => {
             const li = document.createElement('li')
@@ -21,6 +22,7 @@ function searchDigAPI(){
             .then((res) => res.json())
             .then((data) => {
                 const search_list = document.querySelector('#search_list')
+                search_list.innerHTML = ''
                     
                 data.map((item) => {
                     const li = document.createElement('li')
