@@ -2,6 +2,7 @@ function fetchDigAPI(){
     fetch('https://digimoncard.io/api-public/getAllCards.php?sort=name&series=Digimon Card Game&sortdirection=asc')
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         const list = document.querySelector('#fill_list')
         list.innerHTML = ''
         
