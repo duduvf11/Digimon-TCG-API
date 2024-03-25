@@ -28,7 +28,7 @@ function searchDigAPI(){
                     const li = document.createElement('li')
 
                     li.setAttribute('id', item.id)
-                    li.innerHTML = `name: ${item.name}<br />card number: ${item.cardnumber} <br /> digi_type: ${item.digi_type} <br /> image: ${item.image_url}<br /> <br />`
+                    li.innerHTML = `name: ${item.name}<br />card number: ${item.cardnumber} <br /> digi_type: ${item.digi_type} <br /> image: <br><img src="${item.image_url}"></img><br /> <br />`
                     search_list.appendChild(li)
                 })
                 document.querySelector('input').value = ''
