@@ -9,11 +9,11 @@
 <body>
     <main>
         <h1>Digimon TCG API</h1>
-        <button class="fill_button" onclick="fetchDigAPI()">Preencher Lista</button><br>
+        <button class="fill_button" onclick="fetchDigAPI(); limparPesquisa()">Preencher Lista</button><br>
         
         <div>
             <input id="search_input" type="text">
-            <button id="search_button" onclick="searchDigAPI()">Buscar</button>
+            <button id="search_button" onclick="searchDigAPI(); limparLista()">Buscar</button>
             <ul id="search_list"></ul>
         </div>
 

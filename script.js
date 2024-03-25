@@ -38,3 +38,13 @@ function searchDigAPI(){
             })
             .catch((err) => console.log(err));
 }
+
+function limparPesquisa(){
+    document.querySelector('#search_list').innerHTML = ''
+
+}
+
+function limparLista(){
+    document.querySelector('#fill_list').innerHTML = ''
+
+}
