@@ -13,6 +13,7 @@ function fetchDigAPI(){
             list.appendChild(li)
         })
     })
+    .catch((err) => console.log(err))
 }
 
 function searchDigAPI(){
