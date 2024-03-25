@@ -9,9 +9,10 @@ function fetchDigAPI(){
             const li = document.createElement('li')
 
             li.setAttribute('id', item.id)
-            li.innerHTML = `${item.name} | ${item.cardnumber}`
+            li.innerHTML = `${item.name} <br/>${item.cardnumber} <br/><br/>`
             list.appendChild(li)
         })
+
     })
     .catch((err) => console.log(err))
 }
