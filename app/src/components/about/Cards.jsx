@@ -1,25 +1,22 @@
 import React from 'react'
 import "./cards.css"
 
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const About = () => {
+const Cards = () => {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src="" />
         <Card.Body>
-            <Card.Title>Card Title</Card.Title>
+            <Card.Title>MetalGreymon</Card.Title>
             <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Um Digimon Ciborgue que mecanizou mais de metade do seu corpo.
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
         </Card.Body>
         </Card>
     </div>
   )
 }
 
-export default About
+export default Cards

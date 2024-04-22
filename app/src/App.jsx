@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
 import Header from './components/header/Header'
-import Home from './components/Forms/Forms'
-import About from './components/about/Cards'
+import Input from './components/input/Input'
+import Cards from './components/about/Cards'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,8 +12,8 @@ function App() {
   return (
     <>
         <Header/>
-        <Home/>
-        <About/>
+        <Input/>
+        <Cards/>
     </>
   )
 }
