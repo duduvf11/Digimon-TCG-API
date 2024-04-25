@@ -4,7 +4,7 @@ import './App.css'
 
 import Header from './components/header/Header'
 import Input from './components/input/Input'
-import Cards from './components/about/Cards'
+import Cards from './components/cards/Cards'
 
 function App() {
   const [count, setCount] = useState(0)
