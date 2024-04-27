@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
 import Header from './components/header/Header'
-import Input from './components/input/Input'
-import Cards from './components/cards/Cards'
+import DigimonSearchAPI from './components/Search-API/Input'
+import DigimonGetALL from './components/GetAllDigimon/DigimonGetALL';
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [showDigimonAPI, setShowDigimonAPI] = useState(false)
 
   return (
     <>
-        <Header/>
-        <Input/>
-        <Cards/>
+        <Header/>    
+        <DigimonSearchAPI/>
+        <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
+        {showDigimonAPI && <DigimonGetALL/>}
     </>
   )
 }

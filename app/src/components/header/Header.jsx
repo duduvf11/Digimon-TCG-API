@@ -15,10 +15,9 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-                <Nav.Link href="#home">Preencher Lista</Nav.Link>
                 <NavDropdown title="Alunos" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#RA/2525259">Eduardo Viegas Francisco</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Rodrigo Aleixo Fidelis Faria</NavDropdown.Item>
+                    <NavDropdown.Item href="#RA/2503573">Rodrigo Aleixo Fidelis Faria</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>
