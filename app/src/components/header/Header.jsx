@@ -9,9 +9,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 const Header = () => {
   return (
     <div>
-        <Navbar expand="lg" className="bg-body-tertiary">
+        <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="">
         <Container>
-            <Navbar.Brand href="#home">DIGIMON TCG API</Navbar.Brand>
+            <Navbar.Brand href="#home" >DIGIMON TCG API</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
