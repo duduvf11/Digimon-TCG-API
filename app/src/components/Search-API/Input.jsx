@@ -9,9 +9,13 @@ import Card from 'react-bootstrap/Card';
 
 import { ThemeContext } from '../../context/ThemeContext';
 
+import useInputValidation from '../../hook/useInputValidation';
+
 function DigimonSearchAPI(){
   const [input, setInput] = useState('')
   const [send, setSend] = useState('')
+
+  const { isValid, validationMessage, validateInput } = useInputValidation();
 
   const {theme} = useContext(ThemeContext)
 
@@ -21,12 +25,24 @@ function DigimonSearchAPI(){
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" data-bs-theme={theme}>
               <Form.Label data-bs-theme="light">Digimon Name</Form.Label>
-              <Form.Control type="text" value={input} onChange={(ev) => setInput(ev.target.value)} placeholder="MetalGreymon" />
+              <Form.Control type="text" value={input} onChange={(ev) => {
+                    setInput(ev.target.value)
+                    validateInput(ev.target.value)
+                }} placeholder="MetalGreymon" />
               </Form.Group>
             </Form>
+
+            {!isValid && (
+              <div className="alert alert-danger" role="alert">
+                {validationMessage}
+              </div>
+            )}
+            
             <Button onClick={() => {
-                      setSend(input)
-                      setInput('')
+                        if (isValid) {
+                            setSend(input)
+                            setInput('')
+                        }        
               }} variant="secondary" size="lg" active>
               Buscar
             </Button>
