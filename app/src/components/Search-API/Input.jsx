@@ -31,7 +31,7 @@ function DigimonSearchAPI(){
                 }} placeholder="MetalGreymon" />
               </Form.Group>
             </Form>
-
+            
             {!isValid && (
               <div className="alert alert-danger" role="alert">
                 {validationMessage}
