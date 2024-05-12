@@ -14,11 +14,15 @@ function App() {
 
   return (
     <>
-        <h1>Tema: {theme}</h1>
-        <Header/>    
-        <DigimonSearchAPI/>
-        <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
-        {showDigimonAPI && <DigimonGetALL/>}
+        <div className={`${theme === "dark"? " dark-theme" : ""}`}>
+            <button onClick={toggleTheme}></button>
+            <h1>Tema: {theme}</h1>
+            <Header/>    
+            <DigimonSearchAPI/>
+            <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
+            {showDigimonAPI && <DigimonGetALL/>}
+        </div>
+        
     </>
   )
 }

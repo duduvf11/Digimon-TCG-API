@@ -2,13 +2,7 @@
 
 * {
     font-family: "Roboto Mono", monospace;
-}
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    text-align: center;
 }
 
 ul {
@@ -42,6 +36,22 @@ input {
   box-sizing: border-box; 
 }
 
+.format-input{
+    width: 1000px;
+    margin: 0 auto;
+}
+
 .fill_button {
   margin-bottom: 21.4px;
+}
+
+.dark-theme{
+    width: 100%;
+    height: 100%;
+    color: aliceblue;
+    background-color: #0c0035;
+}
+
+.light-letter{
+    color:aliceblue
 }
