@@ -29,8 +29,14 @@ router.post('/login', async (req, res) => {
 
     const loginUser = await loginUserService.execute({user, password})
 
-    //return
-    !loginUser ? res.status(400).json({message: "Usuário e/ou senha errados."}) : res.json(loginUser)
+    //checagem
+    if (!loginUser) res.status(400).json({message: "Usuário e/ou senha errados."})
+
+    const token = loginUser.token
+
+    res.cookie('authToken', token)
+
+    res.json({message: "Logado"})
 
 })
 

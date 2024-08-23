@@ -1,5 +1,6 @@
 import "dotenv/config"
 import express from "express"
+import cookieParser from "cookie-parser"
 
 const PORT = process.env.PORT || 3020
 
@@ -10,6 +11,7 @@ import insetionRouter from "./src/routes/insertionRouter.js"
 
 const app = express()
 
+app.use(cookieParser())
 //habilitando formato json
 app.use(express.json())
 
