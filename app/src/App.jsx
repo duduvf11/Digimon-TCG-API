@@ -2,7 +2,10 @@ import { useContext, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
 
+
 import Header from './components/header/Header'
+import SignupForm from './components/Signup/SignupForm';
+import LoginForm from './components/Login/LoginForm';
 import DigimonSearchAPI from './components/Search-API/Input'
 import DigimonGetALL from './components/GetAllDigimon/DigimonGetALL';
 
@@ -17,7 +20,9 @@ function App() {
         <div className={`${theme === "dark"? " dark-theme" : ""}`}>
             <button onClick={toggleTheme}></button>
             <h1>Tema: {theme}</h1>
-            <Header/>    
+            <Header/>
+            <SignupForm/> 
+            <LoginForm/>
             <DigimonSearchAPI/>
             <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
             {showDigimonAPI && <DigimonGetALL/>}
