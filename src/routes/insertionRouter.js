@@ -1,10 +1,11 @@
 import { Router } from "express";
 
+import isAuthenticated from "../middleware/isAuthenticated.js";
+
 const router = Router()
 
-router.post('/', (req, res) => {
-
-    console.log('Test')
+router.post('/', isAuthenticated, async (req, res) => {
+    console.log("Ok")
 })
 
 export default router
