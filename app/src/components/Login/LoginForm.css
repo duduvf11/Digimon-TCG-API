@@ -1,4 +1,16 @@
 .Login_container {
-    border: 10px solid red;
-    
+    /*background-color: #08015e;*/
+    width: 30%;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.195);
+        
+}
+
+.Login_container Button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+        
 }

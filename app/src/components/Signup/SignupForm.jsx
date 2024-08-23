@@ -10,7 +10,7 @@ const SignupForm = () => {
   const {theme} = useContext(ThemeContext)
 
   return (
-    <Form data-bs-theme={theme}>
+    <Form className='Signup_container' data-bs-theme={theme}>
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="name" placeholder="Enter name" />
@@ -26,6 +26,14 @@ const SignupForm = () => {
       <Button variant="primary" type="submit">
         Register
       </Button>
+      <Form.Group className="login" controlId="formBasicLogin">
+        <Form.Text className="text-muted">
+          Already have a account?
+        </Form.Text>
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form.Group>
     </Form>
   )
 }
