@@ -1,4 +1,4 @@
-import"dotenv/config"
+import "dotenv/config"
 import prismaClient from "../../prisma/client.js";
 
 import jsonwebtoken from "jsonwebtoken"
@@ -23,7 +23,7 @@ class LoginUserService{
 
         if (!decryptedPassword) return null
 
-        const encryptedUser = sign({
+        const token = sign({
             user: userExist.user
         },
             process.env.JWT_SECRET, {
@@ -31,7 +31,7 @@ class LoginUserService{
         })
 
         return {
-            token: encryptedUser
+            token: token
         }
 
     }
