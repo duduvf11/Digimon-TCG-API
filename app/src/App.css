@@ -36,6 +36,10 @@ input {
   box-sizing: border-box; 
 }
 
+.theme_button{
+  margin: 1%;
+}
+
 .format-input{
     width: 1000px;
     margin: 0 auto;

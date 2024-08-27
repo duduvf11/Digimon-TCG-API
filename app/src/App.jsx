@@ -10,6 +10,7 @@ import DigimonSearchAPI from './components/Search-API/Input'
 import DigimonGetALL from './components/GetAllDigimon/DigimonGetALL';
 
 import { ThemeContext } from './context/ThemeContext'; 
+import InsertDigimon from './components/InsertDigimon/InsertDigimon';
 
 function App() {
     const [showDigimonAPI, setShowDigimonAPI] = useState(false)
@@ -18,13 +19,13 @@ function App() {
   return (
     <>
         <div className={`${theme === "dark"? " dark-theme" : ""}`}>
-            <button onClick={toggleTheme}></button>
-            <h1>Tema: {theme}</h1>
             <Header/>
+            <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
             <BrowserRouter>
               <Routes>
                   <Route path='/Digimon-TCG-API/user/new' element={<SignupForm/>}></Route>
-                  <Route path='/Digimon-TCG-API/user/login' element ={<LoginForm/>}></Route>
+                  <Route path='/Digimon-TCG-API/user/login' element={<LoginForm/>}></Route>
+                  <Route path='/Digimon-TCG-API/insertion/' element={<InsertDigimon/>} ></Route>
               </Routes>
             </BrowserRouter>
             <DigimonSearchAPI/>

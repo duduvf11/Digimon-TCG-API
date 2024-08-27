@@ -26,6 +26,7 @@ const Header = () => {
                 </NavDropdown>
             </Nav>
             </Navbar.Collapse>
+            <Button className='button' href="/Digimon-TCG-API/insertion/" variant="success">Adicionar Digimon</Button>{' '}
             <Button className='button' href="/Digimon-TCG-API/user/new" variant="success">Cadastro</Button>{' '}
             <Button className='button' href="/Digimon-TCG-API/user/login" variant="success">Login</Button>{' '}
         </Container>
