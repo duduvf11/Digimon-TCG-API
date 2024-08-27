@@ -76,7 +76,7 @@ function SearchDigimon(props){
                   <Card.Body>
                     <Card.Title>{value.name}</Card.Title>
                     <Card.Text>
-                      {value.cardnumber}
+                      {value.type}
                     </Card.Text>
                   </Card.Body>
                 </Card>

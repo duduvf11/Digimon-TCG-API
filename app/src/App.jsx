@@ -1,7 +1,7 @@
 import { useContext, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Header from './components/header/Header'
 import SignupForm from './components/Signup/SignupForm';
@@ -21,8 +21,12 @@ function App() {
             <button onClick={toggleTheme}></button>
             <h1>Tema: {theme}</h1>
             <Header/>
-            <SignupForm/> 
-            <LoginForm/>
+            <BrowserRouter>
+              <Routes>
+                  <Route path='/Digimon-TCG-API/user/new' element={<SignupForm/>}></Route>
+                  <Route path='/Digimon-TCG-API/user/login' element ={<LoginForm/>}></Route>
+              </Routes>
+            </BrowserRouter>
             <DigimonSearchAPI/>
             <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
             {showDigimonAPI && <DigimonGetALL/>}

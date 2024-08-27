@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext} from 'react';
 import "./LoginForm.css";
 
 import Button from 'react-bootstrap/Button';
@@ -9,10 +9,10 @@ import { ThemeContext } from '../../context/ThemeContext';
 const LoginForm = () => {
     const {theme} = useContext(ThemeContext)
   return (
-    <Form className='Login_container' data-bs-theme={theme}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email Adress</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+    <Form className='Login_container' data-bs-theme={theme} >
+        <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="username" placeholder="Enter Username"/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
