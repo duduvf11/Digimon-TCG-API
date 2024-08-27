@@ -4,7 +4,17 @@ class InsertionService{
 
     async execute(){
 
-        //const findAll = await prismaClient.
+        const getAll = await prismaClient.post.findAll()
+
+        if (!getAll){
+
+            return null
+
+        } else{
+
+            return getAll
+            
+        }
 
     }
 
