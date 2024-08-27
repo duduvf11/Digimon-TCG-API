@@ -34,8 +34,11 @@ router.post('/login', async (req, res) => {
 
     const token = loginUser.token
 
+    // Verificar e remover o cookie antigo, se existir
+    res.clearCookie('authToken');
+
     res.cookie('authToken', token, {
-        maxAge: 1000 * 60 * 5
+        maxAge: 1000 * 60 * 10
     })
 
     res.json({message: "Logado"})
