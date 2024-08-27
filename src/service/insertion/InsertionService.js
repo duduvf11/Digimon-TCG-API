@@ -4,17 +4,11 @@ class InsertionService{
 
     async execute(){
 
-        const getAll = await prismaClient.post.findAll()
-
-        if (!getAll){
-
-            return null
-
-        } else{
-
-            return getAll
-            
-        }
+        const newDigimon = await prismaClient.post.create({
+            data: {
+                
+            }
+        })
 
     }
 

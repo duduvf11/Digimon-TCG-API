@@ -12,6 +12,8 @@ router.get('/', isAuthenticated, async (req, res) => {
 
     const findAll = await insertionService.execute()
 
+    if (!findAll) return res.status(400).json({message: "Nenhum Digimon encontrado..."})
+
     res.json(findAll)
 })
 
