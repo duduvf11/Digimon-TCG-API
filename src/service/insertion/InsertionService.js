@@ -4,6 +4,10 @@ class InsertionService{
 
     async execute(name, type, description, userName){
 
+        if (!name || !type || !description || !userName){
+            return null
+        }
+
         const newDigimon = await prismaClient.post.create({
             data: {
                 name: name,

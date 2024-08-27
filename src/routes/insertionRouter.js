@@ -16,9 +16,9 @@ router.post('/', isAuthenticated, async (req, res) => {
 
     const newDigimon = await insertionService.execute(name, type, description, userName)
 
-    res.json({message: "Digimon criado.", newDigimon})
+    if (!newDigimon) res.status(401).json({message: "Erro"})
 
-    res.end()
+    res.json({message: "Digimon criado.", newDigimon})
 })
 
 export default router

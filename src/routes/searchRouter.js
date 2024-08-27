@@ -2,19 +2,19 @@ import { Router } from "express";
 
 import isAuthenticated from "../middleware/isAuthenticated.js";
 
-import { InsertionService } from "../service/insertion/InsertionService.js";
+import { SearchService } from "../service/search/SearchService.js";
 
 const router = Router()
 
 router.get('/', isAuthenticated, async (req, res) => {
 
-    const insertionService = new InsertionService()
+    const searchService = new SearchService()
 
-    const findAll = await insertionService.execute()
+    const find = await searchService.execute()
 
-    if (!findAll) return res.status(400).json({message: "Nenhum Digimon encontrado..."})
+    if (!find) return res.status(400).json({message: "Nenhum Digimon encontrado..."})
 
-    res.json(findAll)
+    res.json(find)
 })
 
 export default router
