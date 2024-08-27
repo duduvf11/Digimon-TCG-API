@@ -16,6 +16,8 @@ router.post('/', isAuthenticated, async (req, res) => {
 
     const newDigimon = await insertionService.execute(name, type, description, userName)
 
+    res.json({message: "Digimon criado.", newDigimon})
+
     res.end()
 })
 
