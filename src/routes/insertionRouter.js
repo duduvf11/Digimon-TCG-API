@@ -5,7 +5,7 @@ import isAuthenticated from "../middleware/isAuthenticated.js";
 const router = Router()
 
 router.post('/', isAuthenticated, async (req, res) => {
-    console.log("Ok")
+    //id, name, type, description, image
 })
 
 export default router

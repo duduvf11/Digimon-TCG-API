@@ -17,6 +17,19 @@ model User{
     id String @default(uuid())
     user String @id
     password String
+    posts Post[]
 
     @@map("users")
+}
+
+model Post{
+    id String @default(uuid()) @id
+    name String
+    description String?
+    image String
+    userName String
+    user User @relation(fields: [userName], references: [user])
+
+    @@map("posts")
+
 }

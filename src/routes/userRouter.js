@@ -34,7 +34,9 @@ router.post('/login', async (req, res) => {
 
     const token = loginUser.token
 
-    res.cookie('authToken', token)
+    res.cookie('authToken', token, {
+        maxAge: 1000 * 60 * 5
+    })
 
     res.json({message: "Logado"})
 

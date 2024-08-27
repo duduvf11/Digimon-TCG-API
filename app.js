@@ -12,6 +12,7 @@ import insetionRouter from "./src/routes/insertionRouter.js"
 const app = express()
 
 app.use(cookieParser())
+
 //habilitando formato json
 app.use(express.json())
 

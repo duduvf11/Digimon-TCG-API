@@ -4,7 +4,7 @@ class InsertionService{
 
     async execute(){
 
-        
+        //const findAll = await prismaClient.
 
     }
 

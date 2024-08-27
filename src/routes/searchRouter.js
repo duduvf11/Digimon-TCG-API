@@ -2,10 +2,17 @@ import { Router } from "express";
 
 import isAuthenticated from "../middleware/isAuthenticated.js";
 
+import { InsertionService } from "../service/insertion/InsertionService.js";
+
 const router = Router()
 
 router.get('/', isAuthenticated, async (req, res) => {
-    console.log("Ok")
+
+    const insertionService = new InsertionService()
+
+    const findAll = await insertionService.execute()
+
+    res.json(findAll)
 })
 
 export default router
