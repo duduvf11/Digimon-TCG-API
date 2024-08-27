@@ -26,7 +26,6 @@ model Post{
     id String @default(uuid()) @id
     name String
     description String?
-    image String
     userName String
     user User @relation(fields: [userName], references: [user])
 
