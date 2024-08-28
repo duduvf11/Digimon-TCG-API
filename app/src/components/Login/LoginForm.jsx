@@ -1,28 +1,67 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import "./LoginForm.css";
+import axios from "axios"
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
 import { ThemeContext } from '../../context/ThemeContext';
 
 const LoginForm = () => {
-    const {theme} = useContext(ThemeContext)
-  return (
-    <Form className='Login_container' data-bs-theme={theme} >
-        <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control type="username" placeholder="Enter Username"/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-        Submit
-        </Button>
-    </Form>
-  )
+    const {theme} = useContext(ThemeContext);
+    
+    // Estado para armazenar username e password
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
+    const [alertMessage, setAlertMessage] = useState(null);
+    const [alertVariant, setAlertVariant] = useState(''); 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('http://localhost:3030/user/login', { user, password })
+        .then(() => {
+            setAlertMessage('Login bem-sucedido!');
+        })
+        .catch(error => {
+            setAlertMessage('Erro ao fazer login. Verifique suas credenciais.');
+            setAlertVariant('danger');
+            console.error('Erro ao fazer login:', error);
+        });
+    };
+
+    return (
+        <Form className='Login_container' data-bs-theme={theme} onSubmit={handleSubmit}>
+        {alertMessage && (
+          <Alert variant={alertVariant} onClose={() => setAlertMessage(null)} dismissible>
+              {alertMessage}
+          </Alert>
+        )}
+        
+            <Form.Group className="mb-3" controlId="formBasicUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control 
+                    type="text" 
+                    placeholder="Enter Username"
+                    value={user}
+                    onChange={(e) => setUser(e.target.value)}
+                />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control 
+                    type="password" 
+                    placeholder="Password" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
+    );
 }
 
-export default LoginForm
+export default LoginForm;
