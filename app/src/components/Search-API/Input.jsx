@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import "./input.css";
 import axios from 'axios'
 import { useState, useEffect } from 'react'

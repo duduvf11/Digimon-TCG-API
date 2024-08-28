@@ -12,10 +12,6 @@ const SignupForm = () => {
 
   return (
     <Form className='Signup_container' data-bs-theme={theme}>
-      <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="name" placeholder="Enter name" />
-      </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control type="username" placeholder="Enter Username"/>
