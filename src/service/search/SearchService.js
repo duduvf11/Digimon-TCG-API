@@ -4,7 +4,13 @@ class SearchService{
 
     async execute(){
 
-        const getAll = await prismaClient.post.findAll()
+        const getAll = await prismaClient.post.findMany({
+            select: {
+                name: true,
+                type: true,
+                description: true
+            }
+        })
 
         if (!getAll){
 
