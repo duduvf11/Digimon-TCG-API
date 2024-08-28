@@ -1,6 +1,7 @@
 import "dotenv/config"
 import express from "express"
 import cookieParser from "cookie-parser"
+import cors from "cors"
 
 const PORT = process.env.PORT || 3020
 
@@ -10,6 +11,8 @@ import searchRouter from "./src/routes/searchRouter.js"
 import insetionRouter from "./src/routes/insertionRouter.js"
 
 const app = express()
+
+app.use(cors())
 
 app.use(cookieParser())
 
