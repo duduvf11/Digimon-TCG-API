@@ -12,7 +12,12 @@ import insetionRouter from "./src/routes/insertionRouter.js"
 
 const app = express()
 
-app.use(cors())
+const corsOptions = {
+    origin: 'http://localhost:5174', // Substitua pelo domínio do seu frontend
+    credentials: true // Isso é necessário para permitir o envio de cookies
+};
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser())
 
@@ -25,5 +30,5 @@ app.use('/search', searchRouter)
 app.use('/insertion', insetionRouter)
 
 app.listen(PORT, () => {
-    console.log('FUNCIONANDO')
+    console.log('FUNCIONANDO')  
 })

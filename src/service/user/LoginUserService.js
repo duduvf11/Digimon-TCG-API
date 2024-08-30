@@ -29,7 +29,7 @@ class LoginUserService{
             process.env.JWT_SECRET, {
             expiresIn: "3m"
         })
-
+        console.log("criando token:", token)
         return {
             token: token
         }

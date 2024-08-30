@@ -6,7 +6,9 @@ const { verify } = jsonwebtoken
 export default function(req, res, next){
 
     //Ver com o Watanabe qual usar
-    const authToken = req.cookies.authToken
+    console.log(req.cookies); // Mostra todos os cookies recebidos
+    const authToken = req.cookies.authToken; // Acessa o token específico
+    console.log('Auth Token:', authToken);
 
     if (!authToken) return res.status(401).json({message: "Token invalido"})
 

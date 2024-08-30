@@ -30,15 +30,17 @@ router.post('/login', async (req, res) => {
     const loginUser = await loginUserService.execute({user, password})
 
     //checagem
-    if (!loginUser) res.status(400).json({message: "Usuário e/ou senha errados."})
+    if (!loginUser) return res.status(400).json({message: "Usuário e/ou senha errados."})
 
     const token = loginUser.token
-
+    console.log("token do login", token)
     // Verificar e remover o cookie antigo, se existir
     res.clearCookie('authToken');
-
+    
     res.cookie('authToken', token, {
-        maxAge: 1000 * 60 * 10
+        maxAge: 1000 * 60 * 10, 
+        httpOnly: true,
+        path: '/'
     })
 
     res.json({message: "Logado"})
