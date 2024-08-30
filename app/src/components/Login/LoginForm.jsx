@@ -17,12 +17,18 @@ const LoginForm = () => {
     const [alertMessage, setAlertMessage] = useState(null);
     const [alertVariant, setAlertVariant] = useState(''); 
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:3030/user/login', { user, password })
-        .then(() => {
+        axios.post('http://localhost:3030/user/login', { user, password }, { withCredentials: true })
+        .then(response => {
+            // Resgatar o cookie da resposta
+            const cookies = response.headers['set-cookie'];
+            console.log('Cookies:', cookies);
+        
             setAlertMessage('Login bem-sucedido!');
+            setAlertVariant('success');
         })
         .catch(error => {
             setAlertMessage('Erro ao fazer login. Verifique suas credenciais.');
