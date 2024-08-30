@@ -6,7 +6,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Header from './components/header/Header'
 import SignupForm from './components/Signup/SignupForm';
 import LoginForm from './components/Login/LoginForm';
-import DigimonSearchAPI from './components/Search-API/Input'
 import DigimonGetALL from './components/GetAllDigimon/DigimonGetALL';
 
 import { ThemeContext } from './context/ThemeContext'; 
@@ -28,8 +27,7 @@ function App() {
                   <Route path='/Digimon-TCG-API/insertion/' element={<InsertDigimon/>} ></Route>
               </Routes>
             </BrowserRouter>
-            <DigimonSearchAPI/>
-            <button onClick={() => setShowDigimonAPI(true)}>Preencher</button>
+            <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
             {showDigimonAPI && <DigimonGetALL/>}
         </div>
         
