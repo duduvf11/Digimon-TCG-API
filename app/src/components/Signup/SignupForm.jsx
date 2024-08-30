@@ -21,6 +21,39 @@ const SignupForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (user.trim() === '') {
+          setAlertMessage('O campo Username não pode estar vazio.');
+          setAlertVariant('danger');
+          return;
+        }
+
+        if (user.length < 5) {
+            setAlertMessage('O Username deve ter pelo menos 5 caracteres.');
+            setAlertVariant('danger');
+            return;
+        }
+
+        if (password.trim() === '') {
+            setAlertMessage('O campo Senha não pode estar vazio.');
+            setAlertVariant('danger');
+            return;
+        }
+
+        if (password.length < 6) {
+            setAlertMessage('A Senha deve ter pelo menos 6 caracteres.');
+            setAlertVariant('danger');
+            return;
+        }
+
+        const hasNumber = /\d/;
+        const hasLetter = /[a-zA-Z]/;
+
+        if (!hasNumber.test(password) || !hasLetter.test(password)) {
+            setAlertMessage('A Senha deve conter pelo menos uma letra e um número.');
+            setAlertVariant('danger');
+            return;
+        }
+
         axios.post('http://localhost:3030/user/new', { user, password })
         .then(() => {
             setAlertMessage('Cadastro bem-sucedido!');

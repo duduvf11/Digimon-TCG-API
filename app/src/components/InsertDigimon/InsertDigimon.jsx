@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState} from 'react';
 import "./InsertDigimon.css";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
 import axios from 'axios';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -10,12 +11,61 @@ import { ThemeContext } from '../../context/ThemeContext';
 const InsertDigimon = () => {
     const { theme } = useContext(ThemeContext);
 
+    const [alertMessage, setAlertMessage] = useState(null); // Estado para a mensagem de alerta
+    const [alertVariant, setAlertVariant] = useState('danger'); // Estado para o tipo de alerta (danger, success, etc.)
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
         const digimonName = event.target.formDigimonName.value;
         const digimonType = event.target.formDigimonType.value;
         const digimonDescription = event.target.formDigimonCardDescription.value;
+
+            // Validações
+            if (digimonName.trim() === '') {
+                setAlertMessage('O nome do Digimon não pode estar vazio.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (digimonName.length < 8) {
+                setAlertMessage('O nome do Digimon deve ter pelo menos 8 caracteres.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (!digimonName.toLowerCase().endsWith('mon')) {
+                setAlertMessage('O nome do Digimon deve terminar com "mon".');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (digimonType.trim() === '') {
+                setAlertMessage('O tipo do Digimon não pode estar vazio.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (digimonType.length < 6) {
+                setAlertMessage('O tipo do Digimon deve ter pelo menos 6 caracteres.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (digimonDescription.trim() === '') {
+                setAlertMessage('A descrição do Digimon não pode estar vazia.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            if (digimonDescription.length < 15) {
+                setAlertMessage('A descrição do Digimon deve ter pelo menos 10 caracteres.');
+                setAlertVariant('danger');
+                return;
+            }
+    
+            // Limpa a mensagem de alerta ao enviar com sucesso
+            setAlertMessage(null);
 
         const requestBody = {
             name: digimonName,
@@ -30,9 +80,12 @@ const InsertDigimon = () => {
             withCredentials: true, // Isso garante que o cookie de autenticação seja enviado
         })
         .then(response => {
-            console.log('Success:', response.data);
+            setAlertMessage('Digimon criado com sucesso!');
+            setAlertVariant('success');
         })
         .catch((error) => {
+            setAlertMessage('Erro ao criar Digimon.');
+            setAlertVariant('danger');
             console.error('Error:', error);
         });
     }
@@ -40,6 +93,11 @@ const InsertDigimon = () => {
     return (
         <div>
             <Form className='Insert_container' data-bs-theme={theme} onSubmit={handleSubmit}>
+                {alertMessage && (
+                    <Alert variant={alertVariant} onClose={() => setAlertMessage(null)} dismissible>
+                        {alertMessage}
+                    </Alert>
+                )}
                 <Form.Group className="mb-3" controlId="formDigimonName">
                     <Form.Label>Digimon Name</Form.Label>
                     <Form.Control type="digimon_name" placeholder="Enter Digimon Name"/>
