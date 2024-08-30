@@ -79,7 +79,7 @@ const InsertDigimon = () => {
             },
             withCredentials: true, // Isso garante que o cookie de autenticação seja enviado
         })
-        .then(response => {
+        .then(() => {
             setAlertMessage('Digimon criado com sucesso!');
             setAlertVariant('success');
         })
