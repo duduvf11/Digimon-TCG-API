@@ -1,8 +1,11 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import "./DigimonGetALL.css"
 import { ThemeContext } from '../../context/ThemeContext'
+
+import Card from 'react-bootstrap/Card'
+
 
 function DigimonGetALL(){
     const [digimonData, setDigimonData] = useState([]);
@@ -10,24 +13,34 @@ function DigimonGetALL(){
     const {theme} = useContext(ThemeContext)
 
     useEffect(() => {
-        axios.get('https://digimoncard.io/api-public/getAllCards.php?sort=name&series=Digimon Card Game&sortdirection=asc')
-        .then(response => response.data)
-        .then(data => setDigimonData(data))
+        axios.get('http://localhost:3030/search/', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true, // Isso garante que o cookie de autenticação seja enviado
+        })
+        .then(response => {
+            setDigimonData(response.data);
+        })
         .catch(error => console.error('Error', error))            
     }, [])
 
     return <div>
-        <ul>
-            {digimonData.map((value, index) => (
-                <li key={index} className='digimonPreencher'>
-                    <div className={theme === 'dark' ? 'light-letter' : ''}>
-                        <h2>{value.name}</h2>
-                        <p>{value.cardnumber}</p>
-                    </div>
-                   
-                </li>
-            ))}
-        </ul>
+        <ul className="search_list">
+          {digimonData.map((value, index) => (
+              <li key={index}>
+                <Card data-bs-theme={theme}  style={{ width: '18rem'}}>
+                  <Card.Body>
+                    <Card.Title>{value.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{value.type}</Card.Subtitle>
+                    <Card.Text>
+                      {value.description}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </li>
+          ))}
+      </ul>
     </div>
 }
 
