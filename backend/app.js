@@ -5,6 +5,7 @@ import cors from "cors";
 import https from "https";
 import fs from "fs";
 import { join } from 'path';
+import { rateLimit } from "express-rate-limit"
 
 // Configurações de caminho
 const __dirname = process.cwd(); // process.cwd() retorna o diretório atual de trabalho
@@ -18,12 +19,18 @@ const certPath = join(__dirname, 'server.cert');
 console.log('Caminho para server.key:', keyPath);
 console.log('Caminho para server.cert:', certPath);
 
-
 // Opções HTTPS (incluindo chave e certificado)
 const options = {
     key: fs.readFileSync(keyPath),   // Caminho do arquivo server.key
     cert: fs.readFileSync(certPath), // Caminho do arquivo server.cert
 }; 
+
+// Configuração do middleware de limite de taxa
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutos
+    max: 100, // Limita cada IP a 100 requisições por window (15 minutos)
+    message: "Muitas requisições feitas deste IP, por favor tente novamente mais tarde."
+  });
 
 // Rotas
 import userRouter from "./src/routes/userRouter.js";
@@ -38,6 +45,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
+app.use(limiter);
 
 // Cadastrando rotas
 app.use('/user', userRouter);
