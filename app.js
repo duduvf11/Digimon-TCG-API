@@ -11,10 +11,18 @@ const __dirname = process.cwd(); // process.cwd() retorna o diretório atual de 
 
 const PORT = process.env.PORT || 3020;
 
+const keyPath = join(__dirname, 'server.key');
+const certPath = join(__dirname, 'server.cert');
+
+// Exibindo os caminhos no console
+console.log('Caminho para server.key:', keyPath);
+console.log('Caminho para server.cert:', certPath);
+
+
 // Opções HTTPS (incluindo chave e certificado)
 const options = {
-    key: fs.readFileSync(join(__dirname, 'server.key')),   // Caminho do arquivo server.key
-    cert: fs.readFileSync(join(__dirname, 'server.cert')), // Caminho do arquivo server.cert
+    key: fs.readFileSync(keyPath),   // Caminho do arquivo server.key
+    cert: fs.readFileSync(certPath), // Caminho do arquivo server.cert
 }; 
 
 // Rotas
@@ -31,10 +39,12 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 
+// Cadastrando rotas
 app.use('/user', userRouter);
 app.use('/search', searchRouter);
 app.use('/insertion', insetionRouter);
 
+// Criar e iniciar o servidor HTTPS
 const server = https.createServer(options, app);
 
 server.listen(PORT, () => {
