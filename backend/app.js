@@ -55,6 +55,10 @@ app.use('/insertion', insetionRouter);
 // Criar e iniciar o servidor HTTPS
 const server = https.createServer(options, app);
 
-server.listen(PORT, () => {
-    console.log(`Servidor HTTPS rodando na porta ${PORT}`);
-});
+//server.listen(PORT, () => {
+//    console.log(`Servidor HTTPS rodando na porta ${PORT}`);
+//});
+
+app.listen(PORT, () => {
+    console.log(`FUNCIONANDO SEM HTTPS - ${PORT}`)
+})

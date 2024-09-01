@@ -1,7 +1,9 @@
 import redis from "redis"
 
 //Redis
-const client = redis.createClient()
-client.on('error', err => console.log("Error Redis Client") )
+const clientRedis = redis.createClient()
+clientRedis.on('error', err => console.log("Error Redis Client") )
 
-export {client}
+await clientRedis.connect()
+
+export {clientRedis}

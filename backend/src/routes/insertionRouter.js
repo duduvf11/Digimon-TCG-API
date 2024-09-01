@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { clientRedis } from "../redis/client-redis.js";
 
 import isAuthenticated from "../middleware/isAuthenticated.js";
 
@@ -17,6 +18,8 @@ router.post('/', isAuthenticated, async (req, res) => {
     const newDigimon = await insertionService.execute(name, type, description, userName)
 
     if (!newDigimon) res.status(401).json({message: "Erro"})
+
+    await clientRedis.del("postagem-search");
 
     res.json({message: "Digimon criado.", newDigimon})
 })
