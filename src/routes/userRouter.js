@@ -9,6 +9,8 @@ const router = Router()
 //Criar novo usuario
 router.post('/new', async (req, res) => {
 
+    res.clearCookie('authToken');
+
     const {user, password} = req.body
 
     const createUserService = new CreateUserService()
