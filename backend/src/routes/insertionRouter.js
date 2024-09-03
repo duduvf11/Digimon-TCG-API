@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { body, validationResult } from 'express-validator';
 import { clientRedis } from "../redis/client-redis.js";
 import { PrismaClient } from "@prisma/client";
 import isAuthenticated from "../middleware/isAuthenticated.js";
@@ -9,20 +8,8 @@ import logger from '../config/logger.js'; // Importa o logger do Winston
 const prisma = new PrismaClient();
 const router = Router();
 
-// Validações para inserção de Digimon
-const insertionValidations = [
-    body('name').isString().notEmpty().withMessage('Nome é obrigatório.'),
-    body('type').isString().notEmpty().withMessage('Tipo é obrigatório.'),
-    body('description').optional().isString().withMessage('Descrição deve ser uma string.')
-];
-
-router.post('/', isAuthenticated, insertionValidations, async (req, res) => {
+router.post('/', isAuthenticated, async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
         await prisma.$connect();
 
         const { name, type, description } = req.body;
@@ -32,11 +19,11 @@ router.post('/', isAuthenticated, insertionValidations, async (req, res) => {
         const newDigimon = await insertionService.execute(name, type, description, userName);
 
         if (!newDigimon) {
-            logger.warn('Insertion failed:', { name, type, description });
+            logger.warn('Insertion failed for:', { name, type, description });
             return res.status(401).json({ message: "Erro" });
         }
 
-        await clientRedis.del("postagem-search");
+        await clientRedis.del(`postagem-search-${req.user}`);
 
         res.json({ message: "Digimon criado.", newDigimon });
     } catch (error) {

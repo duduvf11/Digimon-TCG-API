@@ -8,6 +8,11 @@ const router = Router();
 
 router.get('/', isAuthenticated, async (req, res) => {
     try {
+        if (!req.user) {
+            logger.warn('User not authenticated');
+            return res.status(401).json({ message: "Usuário não autenticado" });
+        }
+        
         const postagem = await clientRedis.get(`postagem-search-${req.user}`);
 
         // Loga a resposta cacheada
