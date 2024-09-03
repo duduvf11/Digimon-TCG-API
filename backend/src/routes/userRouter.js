@@ -1,17 +1,29 @@
 import { Router } from "express";
+import { body, validationResult } from 'express-validator';
 
 // Importa serviços
 import { CreateUserService } from "../service/user/CreateUserService.js";
 import { LoginUserService } from "../service/user/LoginUserService.js";
 
 import { clientRedis } from "../redis/client-redis.js";
-import logger from '../config/logger.js'; // Importa o logger do Winston
+import logger from '../../logger.js'; // Importa o logger do Winston
 
 const router = Router();
 
+// Validações para criação de usuário
+const createUserValidations = [
+    body('user').isString().notEmpty().withMessage('Nome de usuário é obrigatório.'),
+    body('password').isString().isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres.')
+];
+
 // Criar novo usuário
-router.post('/new', async (req, res) => {
+router.post('/new', createUserValidations, async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         res.clearCookie('authToken');
 
         const { user, password } = req.body;
@@ -33,9 +45,20 @@ router.post('/new', async (req, res) => {
     }
 });
 
+// Validações para login
+const loginValidations = [
+    body('user').isString().notEmpty().withMessage('Nome de usuário é obrigatório.'),
+    body('password').isString().notEmpty().withMessage('Senha é obrigatória.')
+];
+
 // Logar usuário
-router.post('/login', async (req, res) => {
+router.post('/login', loginValidations, async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         const { user, password } = req.body;
         const loginUserService = new LoginUserService();
 

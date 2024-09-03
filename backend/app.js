@@ -6,6 +6,7 @@ import https from "https";
 import fs from "fs";
 import { join } from 'path';
 import { rateLimit } from "express-rate-limit"
+import helmet from "helmet"
 
 // Configurações de caminho
 const __dirname = process.cwd(); // process.cwd() retorna o diretório atual de trabalho
@@ -38,6 +39,7 @@ import digimonRouter from "./src/routes/digimonRouter.js";
 
 const app = express();
 
+app.use(helmet())
 app.use(cors({
     origin: 'http://localhost:5174',
     credentials: true

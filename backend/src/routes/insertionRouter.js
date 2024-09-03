@@ -1,15 +1,28 @@
 import { Router } from "express";
+import { body, validationResult } from 'express-validator';
 import { clientRedis } from "../redis/client-redis.js";
 import { PrismaClient } from "@prisma/client";
 import isAuthenticated from "../middleware/isAuthenticated.js";
 import { InsertionService } from "../service/insertion/InsertionService.js";
-import logger from '../config/logger.js'; // Importa o logger do Winston
+import logger from '../../logger.js'; // Importa o logger do Winston
 
 const prisma = new PrismaClient();
 const router = Router();
 
-router.post('/', isAuthenticated, async (req, res) => {
+const insertionValidations = [
+    body('name').isString().notEmpty().withMessage('Nome é obrigatório.'),
+    body('type').isString().notEmpty().withMessage('Tipo é obrigatório.'),
+    body('description').optional().isString().withMessage('Descrição deve ser uma string.')
+];
+
+router.post('/', isAuthenticated, insertionValidations, async (req, res) => {
     try {
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         await prisma.$connect();
 
         const { name, type, description } = req.body;

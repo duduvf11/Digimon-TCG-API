@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { query, validationResult } from 'express-validator';
 import isAuthenticated from "../middleware/isAuthenticated.js";
 import { SearchService } from "../service/search/SearchService.js";
 import { clientRedis } from "../redis/client-redis.js";
-import logger from '../config/logger.js'; // Importa o logger do Winston
+import logger from '../../logger.js'; // Importa o logger do Winston
 
 const router = Router();
 
