@@ -1,7 +1,7 @@
 import { useContext, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 
 import Header from './components/header/Header'
 import SignupForm from './components/Signup/SignupForm';
@@ -16,23 +16,22 @@ function App() {
     const {theme, toggleTheme} = useContext(ThemeContext)
 
   return (
-    <>
-        <div className={`${theme === "dark"? " dark-theme" : ""}`}>
-            <Header/>
-            <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
-            <BrowserRouter>
-              <Routes>
-                  <Route path='/Digimon-TCG-API/user/new' element={<SignupForm/>}></Route>
-                  <Route path='/Digimon-TCG-API/user/login' element={<LoginForm/>}></Route>
-                  <Route path='/Digimon-TCG-API/insertion/' element={<InsertDigimon/>} ></Route>
-              </Routes>
-            </BrowserRouter>
-            <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
-            {showDigimonAPI && <DigimonGetALL/>}
-        </div>
-        
-    </>
-  )
+      <>
+          <div className={`${theme === "dark"? " dark-theme" : ""}`}>
+              <Header/>
+              <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
+              <Router>
+                  <Routes>
+                      <Route path='/user/new' element={<SignupForm/>}></Route>
+                      <Route path='/user/login' element={<LoginForm/>}></Route>
+                      <Route path='/insertion/' element={<InsertDigimon/>} ></Route>
+                  </Routes>
+              </Router>
+              <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
+              {showDigimonAPI && <DigimonGetALL/>}
+          </div>
+      </>
+    )
 }
 
 export default App
