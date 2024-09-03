@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/', isAuthenticated, async (req, res) => {
     try {
-        const postagem = await clientRedis.get('postagem-search');
+        const postagem = await clientRedis.get(`postagem-search-${req.user}`);
 
         // Loga a resposta cacheada
         logger.info('Cache hit: ', { postagem: JSON.parse(postagem) });
@@ -21,7 +21,7 @@ router.get('/', isAuthenticated, async (req, res) => {
             return res.status(400).json({ message: "Nenhum Digimon encontrado..." });
         }
 
-        await clientRedis.set("postagem-search", JSON.stringify(find));
+        await clientRedis.set(`postagem-search-${req.user}`, JSON.stringify(find));
 
         return res.json(find);
     } catch (err) {
