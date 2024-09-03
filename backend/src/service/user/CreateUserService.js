@@ -1,4 +1,5 @@
-import prismaClient from "../../prisma/client.js";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient()
 
 import bcryptjs from "bcryptjs"
 const { hash } = bcryptjs;
@@ -6,24 +7,39 @@ const { hash } = bcryptjs;
 class CreateUserService{
     async execute({user, password}){
 
-        const userExist = await prismaClient.user.findFirst({
-            where: {
-                user: user
-            }
-        })
+        try{
 
-        if (userExist) return null
+            await prisma.$connect();
 
-        const passwordHash = await hash(password, 8)
+            const userExist = await prisma.user.findFirst({
+                where: {
+                    user: user
+                }
+            })
 
-        const createUser = await prismaClient.user.create({
-            data: {
-                user: user,
-                password: passwordHash
-            }
-        })
+            if (userExist) return null
 
-        return createUser
+            const passwordHash = await hash(password, 8)
+
+            const createUser = await prisma.user.create({
+                data: {
+                    user: user,
+                    password: passwordHash
+                }
+            })
+
+            return createUser
+
+        } catch (error) {
+
+            console.error(error);
+            res.status(500).json({ message: "Erro no servidor" });
+    
+        } finally {
+            
+            await prisma.$disconnect();
+            
+        }
 
     }
 }

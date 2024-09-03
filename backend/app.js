@@ -34,8 +34,7 @@ const limiter = rateLimit({
 
 // Rotas
 import userRouter from "./src/routes/userRouter.js";
-import searchRouter from "./src/routes/searchRouter.js";
-import insetionRouter from "./src/routes/insertionRouter.js";
+import digimonRouter from "./src/routes/digimonRouter.js";
 
 const app = express();
 
@@ -48,9 +47,8 @@ app.use(express.json());
 app.use(limiter);
 
 // Cadastrando rotas
-app.use('/user', userRouter);
-app.use('/search', searchRouter);
-app.use('/insertion', insetionRouter);
+app.use('/users', userRouter);
+app.use('/digimons', digimonRouter);
 
 // Criar e iniciar o servidor HTTPS
 const server = https.createServer(options, app);

@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { clientRedis } from "../redis/client-redis.js";
 
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient()
+
 import isAuthenticated from "../middleware/isAuthenticated.js";
 
 import { InsertionService } from "../service/insertion/InsertionService.js";
@@ -9,19 +12,36 @@ const router = Router()
 
 router.post('/', isAuthenticated, async (req, res) => {
 
-    const {name, type, description} = req.body
+    try{
 
-    const userName = req.user
+        await prisma.$connect();
 
-    const insertionService = new InsertionService()
+        const {name, type, description} = req.body
+        const userName = req.user
 
-    const newDigimon = await insertionService.execute(name, type, description, userName)
+        const insertionService = new InsertionService()
 
-    if (!newDigimon) res.status(401).json({message: "Erro"})
+        const newDigimon = await insertionService.execute(name, type, description, userName)
 
-    await clientRedis.del("postagem-search");
+        if (!newDigimon) res.status(401).json({message: "Erro"})
 
-    res.json({message: "Digimon criado.", newDigimon})
+        await clientRedis.del("postagem-search");
+
+        res.json({message: "Digimon criado.", newDigimon})
+
+        await prisma.$disconnect();
+
+    }   catch (error) {
+
+        console.error(error);
+        res.status(500).json({ message: "Erro no servidor" });
+
+    } finally {
+        
+        await prisma.$disconnect();
+        
+    }
+    
 })
 
 export default router

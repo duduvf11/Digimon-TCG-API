@@ -10,7 +10,7 @@ const router = Router()
 router.get('/', isAuthenticated, async (req, res) => {
 
     try{
-
+        
         const postagem = await clientRedis.get('postagem-search')
 
         //Para por aqui caso haja cache
