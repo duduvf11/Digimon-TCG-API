@@ -55,14 +55,14 @@ const SignupForm = () => {
         }
 
         axios.post('http://localhost:3030/user/new', { user, password })
-        .then(() => {
-            setAlertMessage('Cadastro bem-sucedido!');
-        })
-        .catch(error => {
-            setAlertMessage('Erro ao fazer Cadastro. Verifique suas credenciais.');
-            setAlertVariant('danger');
-            console.error('Erro ao fazer cadastro:', error);
-        });
+          .then(() => {
+              setAlertMessage('Cadastro bem-sucedido!');
+          })
+          .catch(error => {
+              setAlertMessage('Erro ao fazer Cadastro. Verifique suas credenciais.');
+              setAlertVariant('danger');
+              console.error('Erro ao fazer cadastro:', error);
+          });
     };
 
 
