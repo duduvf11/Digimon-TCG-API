@@ -22,9 +22,9 @@ function App() {
               <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
               <Router>
                   <Routes>
-                      <Route path='/user/new' element={<SignupForm/>}></Route>
-                      <Route path='/user/login' element={<LoginForm/>}></Route>
-                      <Route path='/insertion/' element={<InsertDigimon/>} ></Route>
+                      <Route path='/users/new' element={<SignupForm/>}></Route>
+                      <Route path='/users/login' element={<LoginForm/>}></Route>
+                      <Route path='/digimons' element={<InsertDigimon/>} ></Route>
                   </Routes>
               </Router>
               <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>

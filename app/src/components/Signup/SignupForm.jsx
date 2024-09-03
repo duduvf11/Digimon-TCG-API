@@ -54,7 +54,7 @@ const SignupForm = () => {
             return;
         }
 
-        axios.post('http://localhost:3030/user/new', { user, password })
+        axios.post('http://localhost:3030/users/new', { user, password })
           .then(() => {
               setAlertMessage('Cadastro bem-sucedido!');
           })

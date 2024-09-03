@@ -53,7 +53,7 @@ const LoginForm = () => {
             return;
         }
 
-        axios.post('http://localhost:3030/user/login', { user, password }, { withCredentials: true })
+        axios.post('http://localhost:3030/users/login', { user, password }, { withCredentials: true })
         .then(response => {
             // Resgatar o cookie da resposta
             const cookies = response.headers['set-cookie'];

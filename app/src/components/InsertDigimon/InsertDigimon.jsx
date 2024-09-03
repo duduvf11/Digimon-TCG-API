@@ -73,7 +73,7 @@ const InsertDigimon = () => {
             description: digimonDescription,
         };
 
-        axios.post('http://localhost:3030/insertion/', requestBody, {
+        axios.post('http://localhost:3030/digimons', requestBody, {
             headers: {
                 'Content-Type': 'application/json',
             },
