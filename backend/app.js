@@ -7,6 +7,7 @@ import fs from "fs";
 import { join } from 'path';
 import { rateLimit } from "express-rate-limit"
 import helmet from "helmet"
+import xss from "xss-clean"
 
 // Configurações de caminho
 const __dirname = process.cwd(); // process.cwd() retorna o diretório atual de trabalho
@@ -47,6 +48,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.use(limiter);
+app.use(xss())
 
 // Cadastrando rotas
 app.use('/users', userRouter);
