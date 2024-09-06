@@ -1,7 +1,7 @@
 import { useContext, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
-import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Header from './components/header/Header'
 import SignupForm from './components/Signup/SignupForm';
@@ -20,13 +20,13 @@ function App() {
           <div className={`${theme === "dark"? " dark-theme" : ""}`}>
               <Header/>
               <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
-              <Router>
+              <BrowserRouter>
                   <Routes>
                       <Route path='/users/new' element={<SignupForm/>}></Route>
                       <Route path='/users/login' element={<LoginForm/>}></Route>
                       <Route path='/digimons' element={<InsertDigimon/>} ></Route>
                   </Routes>
-              </Router>
+              </BrowserRouter>
               <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
               {showDigimonAPI && <DigimonGetALL/>}
           </div>
