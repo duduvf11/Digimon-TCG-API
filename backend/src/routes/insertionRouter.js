@@ -38,6 +38,7 @@ router.post('/', isAuthenticated, insertionValidations, async (req, res) => {
 
         await clientRedis.del(`postagem-search-${req.user}`);
 
+        logger.info('Digimon criado com sucesso:', { name, type, description, userName });
         res.json({ message: "Digimon criado.", newDigimon });
     } catch (error) {
         logger.error('Error during insertion:', error);

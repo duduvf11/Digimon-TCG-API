@@ -29,6 +29,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 
         await clientRedis.set(`postagem-search-${req.user}`, JSON.stringify(find));
 
+        logger.info('Busca realizada com sucesso:', { user: req.user, resultados: find });
         return res.json(find);
     } catch (err) {
         logger.error('Error processing request:', err);
