@@ -22,9 +22,9 @@ function App() {
               <button className='theme_button' onClick={toggleTheme}>Tema: {theme}</button>
               <BrowserRouter>
                   <Routes>
-                      <Route path='/users/new' element={<SignupForm/>}></Route>
-                      <Route path='/users/login' element={<LoginForm/>}></Route>
-                      <Route path='/digimons' element={<InsertDigimon/>} ></Route>
+                      <Route path='/Digimon-TCG-API/users/new' element={<SignupForm/>}></Route>
+                      <Route path='/Digimon-TCG-API/users/login' element={<LoginForm/>}></Route>
+                      <Route path='/Digimon-TCG-API/digimons' element={<InsertDigimon/>} ></Route>
                   </Routes>
               </BrowserRouter>
               <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
