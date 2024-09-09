@@ -1,0 +1,17 @@
+.search_list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.search_item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    min-height: 250px; /* Altura mínima para todos os itens terem o mesmo tamanho */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

@@ -29,7 +29,7 @@ function DigimonGetALL(){
         <ul className="search_list">
           {digimonData.map((value, index) => (
               <li key={index}>
-                <Card data-bs-theme={theme}  style={{ width: '18rem'}}>
+                <Card className='search_item' data-bs-theme={theme}  style={{ width: '18rem'}}>
                   <Card.Body>
                     <Card.Title>{value.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{value.type}</Card.Subtitle>
