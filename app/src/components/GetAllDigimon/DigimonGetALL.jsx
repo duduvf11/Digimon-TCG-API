@@ -13,7 +13,7 @@ function DigimonGetALL(){
     const {theme} = useContext(ThemeContext)
 
     useEffect(() => {
-        axios.get('http://localhost:3030/digimons', {
+        axios.get('https://localhost:3030/digimons', {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -28,8 +28,8 @@ const InsertDigimon = () => {
                 return;
             }
     
-            if (digimonName.length < 8) {
-                setAlertMessage('O nome do Digimon deve ter pelo menos 8 caracteres.');
+            if (digimonName.length < 6) {
+                setAlertMessage('O nome do Digimon deve ter pelo menos 6 caracteres.');
                 setAlertVariant('danger');
                 return;
             }
@@ -46,8 +46,8 @@ const InsertDigimon = () => {
                 return;
             }
     
-            if (digimonType.length < 6) {
-                setAlertMessage('O tipo do Digimon deve ter pelo menos 6 caracteres.');
+            if (digimonType.length < 2) {
+                setAlertMessage('O tipo do Digimon deve ter pelo menos 2 caracteres.');
                 setAlertVariant('danger');
                 return;
             }
@@ -58,8 +58,8 @@ const InsertDigimon = () => {
                 return;
             }
     
-            if (digimonDescription.length < 15) {
-                setAlertMessage('A descrição do Digimon deve ter pelo menos 10 caracteres.');
+            if (digimonDescription.length < 8) {
+                setAlertMessage('A descrição do Digimon deve ter pelo menos 8 caracteres.');
                 setAlertVariant('danger');
                 return;
             }
@@ -73,7 +73,7 @@ const InsertDigimon = () => {
             description: digimonDescription,
         };
 
-        axios.post('http://localhost:3030/digimons', requestBody, {
+        axios.post('https://localhost:3030/digimons', requestBody, {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -2,3 +2,14 @@
 2024-09-03T22:35:25.795Z [info]: User created: Roedriiiiiiiiiiiiii
 2024-09-03T22:35:29.448Z [info]: User logged in: Rodrigo, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiUm9kcmlnbyIsImlhdCI6MTcyNTQwMjkyOSwiZXhwIjoxNzI1NDAzMTA5fQ.y6HlXtbpuILUrlPNWLAXB78XQtLDe7IKrDzjSHRhCUQ
 2024-09-03T22:35:31.317Z [info]: Cache hit: 
+2024-09-09T20:51:05.301Z [error]: Error creating user: res is not defined
+2024-09-09T20:52:12.020Z [info]: User created: admin123
+2024-09-09T20:52:21.786Z [info]: User logged in: admin123, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4xMjMiLCJpYXQiOjE3MjU5MTUxNDEsImV4cCI6MTcyNTkxNTMyMX0.GLBkYsqv1D2pGV44tA5xaooK-PyeLvUSnd2FrNgVYsY
+2024-09-09T20:54:21.093Z [info]: Digimon criado com sucesso:
+2024-09-09T20:54:22.816Z [error]: Error processing request: postagem is not defined
+2024-09-09T20:54:22.823Z [error]: Error processing request: postagem is not defined
+2024-09-09T20:55:39.561Z [info]: User logged in: admin123, Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4xMjMiLCJpYXQiOjE3MjU5MTUzMzksImV4cCI6MTcyNTkxNTUxOX0.Pkkopu5eEM2rLtOdid3i2itLDkyLD4aK7ZmrSndc42k
+2024-09-09T20:55:40.926Z [info]: Busca realizada com sucesso:
+2024-09-09T20:55:41.020Z [info]: Busca realizada com sucesso:
+2024-09-09T20:56:08.079Z [info]: Busca realizada com sucesso:
+2024-09-09T20:56:08.172Z [info]: Busca realizada com sucesso:

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { body, validationResult } from 'express-validator';
-import { clientRedis } from "../redis/client-redis.js";
+//import { clientRedis } from "../redis/client-redis.js";
 import { PrismaClient } from "@prisma/client";
 import isAuthenticated from "../middleware/isAuthenticated.js";
 import { InsertionService } from "../service/insertion/InsertionService.js";
@@ -36,7 +36,7 @@ router.post('/', isAuthenticated, insertionValidations, async (req, res) => {
             return res.status(401).json({ message: "Erro" });
         }
 
-        await clientRedis.del(`postagem-search-${req.user}`);
+        //await clientRedis.del(`postagem-search-${req.user}`);
 
         logger.info('Digimon criado com sucesso:', { name, type, description, userName });
         res.json({ message: "Digimon criado.", newDigimon });

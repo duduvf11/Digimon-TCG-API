@@ -5,7 +5,7 @@ import { body, validationResult } from 'express-validator';
 import { CreateUserService } from "../service/user/CreateUserService.js";
 import { LoginUserService } from "../service/user/LoginUserService.js";
 
-import { clientRedis } from "../redis/client-redis.js";
+//import { clientRedis } from "../redis/client-redis.js";
 import logger from '../../logger.js'; // Importa o logger do Winston
 
 const router = Router();
@@ -32,7 +32,7 @@ router.post('/new', createUserValidations, async (req, res) => {
         const createUser = await createUserService.execute({ user, password });
 
         if (createUser) {
-            await clientRedis.del("postagem-search");
+            //await clientRedis.del("postagem-search");
             logger.info(`User created: ${user}`);
             res.json({ message: "Usuário cadastrado." });
         } else {
@@ -69,7 +69,7 @@ router.post('/login', loginValidations, async (req, res) => {
             return res.status(400).json({ message: "Usuário e/ou senha errados." });
         }
 
-        await clientRedis.del("postagem-search");
+        //await clientRedis.del("postagem-search");
 
         const token = loginUser.token;
         logger.info(`User logged in: ${user}, Token: ${token}`);
