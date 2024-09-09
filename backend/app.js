@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cookieParser from "cookie-parser";
+import compression from "compression"
 import cors from "cors";
 import https from "https";
 import fs from "fs";
@@ -49,6 +50,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(limiter);
 app.use(xss())
+app.use(compression())
 
 // Cadastrando rotas
 app.use('/users', userRouter);
