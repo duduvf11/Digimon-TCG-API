@@ -27,7 +27,7 @@ function App() {
                       <Route path='/Digimon-TCG-API/digimons' element={<InsertDigimon/>} ></Route>
                   </Routes>
               </BrowserRouter>
-              <button onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
+              <button className='button_showDigimon' onClick={() => setShowDigimonAPI(true)}>Mostrar Digimons</button>
               {showDigimonAPI && <DigimonGetALL/>}
           </div>
       </>

@@ -59,6 +59,10 @@ body {
   margin-bottom: 21.4px;
 }
 
+.button_showDigimon{
+  margin-bottom: 2%;
+}
+
 .dark-theme{
     min-height: 1080px;
     width: 100%;

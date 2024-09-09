@@ -6,8 +6,6 @@
 }
 
 .search_item {
-    background-color: #fff;
-    border: 1px solid #ddd;
     padding: 15px;
     min-height: 250px; /* Altura mínima para todos os itens terem o mesmo tamanho */
     display: flex;
